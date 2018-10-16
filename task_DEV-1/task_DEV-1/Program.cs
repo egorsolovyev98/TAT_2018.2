@@ -18,9 +18,7 @@ namespace task_DEV1
                     throw new Exception("Wrong number of arguments");
                 }
 
-                string inputString = args[0];
-                MaxDifferentSequence maxDifferentSequence = new MaxDifferentSequence(inputString);
-                int length = maxDifferentSequence.GetLengthOfSequence();
+                int length = args[0].GetLengthOfSequence();
                 Console.WriteLine(length);
             }
             catch(Exception e)

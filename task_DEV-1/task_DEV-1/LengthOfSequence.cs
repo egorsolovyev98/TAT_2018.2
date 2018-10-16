@@ -2,16 +2,9 @@
 
 namespace task_DEV1
 {
-    class FindMaxSequence
+    static class LengthOfSequence
     {
-        private string sequence;
-
-        public FindMaxSequence(string sequence)
-        {
-            this.sequence = sequence;
-        }
-
-        public int GetLengthOfSequence()
+        public static int GetLengthOfSequence(this string sequence)
         {
             int maxLength = 0;
             int counter = 1;
@@ -23,7 +16,7 @@ namespace task_DEV1
 
             for (int i = 1; i < sequence.Length; i++)
             {
-                if (sequence[i-1] != sequence[i])
+                if (sequence[i - 1] != sequence[i])
                 {
                     counter++;
                 }
