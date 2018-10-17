@@ -5,6 +5,10 @@ namespace task_DEV1
 {
     static class LengthOfSequence
     {
+        /// <summary>
+        /// The LengthOfSequence class calculates 
+        /// the maximum number of different consecutive characters in a string
+        /// </summary>
         public static int GetLengthOfSequence(this string sequence)
         {
             if (sequence.Length == 1)
@@ -12,18 +16,18 @@ namespace task_DEV1
                 return 1;
             }
 
+            HashSet<char> setOfCharacters = new HashSet<char>();
             int maxLength = 0;
             int counter = 1;
-            HashSet<char> set = new HashSet<char>();
 
             for (int i = 1; i < sequence.Length; i++)
             {
                 if (sequence[i - 1] != sequence[i])
                 {
-                    set.Add(sequence[i - 1]);
+                    setOfCharacters.Add(sequence[i - 1]);
                     counter++;
 
-                    if(set.Contains(sequence[i])) //check the unique of character 
+                    if (setOfCharacters.Contains(sequence[i])) // Check the uniqueness of character 
                     {
                         counter--;
                     }
@@ -37,7 +41,7 @@ namespace task_DEV1
                 else
                 {
                     counter = 1;
-                    set.Clear();
+                    setOfCharacters.Clear();
                 }
             }
 

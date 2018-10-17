@@ -13,13 +13,15 @@ namespace task_DEV1
         {
             try
             {
-                if (args.Length != 1)
+                if (args.Length == 0)
                 {
                     throw new Exception("Wrong number of arguments");
                 }
+                
+                string inputString = args.ArrayToString(); // Form string from arguments array
+                int lengthOfSequence = inputString.GetLengthOfSequence();
 
-                int length = args[0].GetLengthOfSequence();
-                Console.WriteLine(length);
+                Console.WriteLine(lengthOfSequence);
             }
             catch(Exception e)
             {
