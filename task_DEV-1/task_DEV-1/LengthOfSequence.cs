@@ -17,32 +17,23 @@ namespace task_DEV1
             }
 
             HashSet<char> setOfCharacters = new HashSet<char>();
-            int maxLength = 0;
-            int counter = 1;
+            int maxLength = 1;
 
-            for (int i = 1; i < sequence.Length; i++)
+            for (int i = 0; i < sequence.Length; i++)
             {
-                if (sequence[i - 1] != sequence[i])
+                setOfCharacters.Add(sequence[i]);
+
+                for (int j = i + 1; (j < sequence.Length) && (!setOfCharacters.Contains(sequence[j])); j++)
                 {
-                    setOfCharacters.Add(sequence[i - 1]);
-                    counter++;
+                    setOfCharacters.Add(sequence[j]);
 
-                    if (setOfCharacters.Contains(sequence[i])) // Check the uniqueness of character 
+                    if (setOfCharacters.Count > maxLength)
                     {
-                        counter--;
+                        maxLength = setOfCharacters.Count;
                     }
-
-                    if (counter > maxLength)
-                    {
-                        maxLength = counter;
-                    }
-
                 }
-                else
-                {
-                    counter = 1;
-                    setOfCharacters.Clear();
-                }
+
+                setOfCharacters.Clear();
             }
 
             return maxLength;
