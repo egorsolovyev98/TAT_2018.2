@@ -19,7 +19,7 @@ namespace task_DEV1
                 return 1;
             }
 
-            HashSet<char> setOfCharacters = new HashSet<char>();
+            List<char> setOfCharacters = new List<char>();
             int maxLength = 1;
 
             for (int i = 0; i < sequence.Length; i++)
