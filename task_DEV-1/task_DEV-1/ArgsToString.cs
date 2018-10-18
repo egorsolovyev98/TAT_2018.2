@@ -2,6 +2,9 @@
 
 namespace task_DEV1
 {
+    /// <summary>
+    /// Arguments to string.
+    /// </summary>
     static class ArgsToString
     {
         /// <summary>

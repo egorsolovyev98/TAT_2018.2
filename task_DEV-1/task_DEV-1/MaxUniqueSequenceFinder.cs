@@ -2,6 +2,9 @@
 
 namespace task_DEV1
 {
+    /// <summary>
+    /// Max unique sequence finder.
+    /// </summary>
     static class MaxUniqueSequenceFinder
     {
         /// <summary>
