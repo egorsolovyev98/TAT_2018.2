@@ -15,7 +15,7 @@ namespace task_DEV1
 
             foreach (string i in args)
             {
-                formingString.Append(i + " ");
+                formingString.Append(i).Append(" ");
             }
 
             formingString.Remove(formingString.Length - 1, 1); // Delete last space bar
