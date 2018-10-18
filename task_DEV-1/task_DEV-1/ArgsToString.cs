@@ -1,13 +1,14 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace task_DEV1
 {
     static class ArgsToString
     {
         /// <summary>
-        /// The ArgsToString class forms a string of arguments
+        /// Forms a string from string array.
         /// </summary>
+        /// <returns>String from string array.</returns>
+        /// <param name="args">Array of string.</param>
         public static string ArrayToString(this string[] args)
         {
             StringBuilder formingString = new StringBuilder();

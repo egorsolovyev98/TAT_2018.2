@@ -2,13 +2,17 @@
 
 namespace task_DEV1
 {
-    class MaxNumberOfDifferentCharacters
+    /// <summary>
+    /// The MaxNumberOfDifferentCharacters class accepts a sequence of characters (a string) 
+    /// as an argument from the command line, and which displays to the console 
+    /// the maximum number of unique consecutive characters in a string
+    /// </summary>
+    class MaxNumberOfUniqueCharacters
     {
         /// <summary>
-        /// The MaxNumberOfDifferentCharacters class accepts a sequence of characters (a string) 
-        /// as an argument from the command line, and which displays to the console 
-        /// the maximum number of different consecutive characters in a string
+        /// The entry point of the program, where the program control starts and ends.
         /// </summary>
+        /// <param name="args">The command-line arguments.</param>
         public static void Main(string[] args)
         {
             try

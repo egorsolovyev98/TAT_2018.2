@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace task_DEV1
 {
-    static class LengthOfSequence
+    static class MaxUniqueSequenceFinder
     {
         /// <summary>
-        /// The LengthOfSequence class calculates 
-        /// the maximum number of different consecutive characters in a string
+        /// Calculates the maximum number of unique consecutive characters in a string.
         /// </summary>
+        /// <returns>The length of sequence.</returns>
+        /// <param name="sequence">The string in which the sequence is searched.</param>
         public static int GetLengthOfSequence(this string sequence)
         {
             if (sequence.Length == 1)
