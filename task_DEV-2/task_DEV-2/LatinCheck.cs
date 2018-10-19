@@ -3,12 +3,12 @@
 namespace task_DEV2
 {
     /// <summary>
-    /// Checks if string consists only of Cyrillic
+    /// Checks if string consists only of Latin.
     /// </summary>
     static class LatinCheck
     {
         /// <summary>
-        /// Checks, if string consists only of Cyrillic.
+        /// Checks, if string consists only of Latin.
         /// </summary>
         /// <returns><c>true</c>, if cyrilic was used, <c>false</c> otherwise.</returns>
         /// <param name="str">String.</param>

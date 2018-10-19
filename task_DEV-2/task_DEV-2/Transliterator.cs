@@ -11,7 +11,7 @@ namespace task_DEV2
     static class Transliterator
     {
         /// <summary>
-        /// Transliterate the specified inputString.
+        /// Transliterate the specified inputtring.
         /// </summary>
         /// <returns>The transliterated string.</returns>
         /// <param name="inputString">Input string.</param>

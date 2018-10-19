@@ -3,7 +3,7 @@
 namespace task_DEV2
 {
     /// <summary>
-    /// Checks if string consists only of Cyrillic
+    /// Checks if string consists only of Cyrillic.
     /// </summary>
     static class CyrillicCheck
     {
