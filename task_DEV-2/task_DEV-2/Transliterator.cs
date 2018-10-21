@@ -53,7 +53,7 @@ namespace task_DEV2
                 ["ь"] = string.Empty
             };
 
-            StringBuilder transliteratedString = new StringBuilder(inputString.ToLower());
+            StringBuilder transliteratedString = new StringBuilder(inputString);
 
             if (inputString.IsCyrillic())
             {

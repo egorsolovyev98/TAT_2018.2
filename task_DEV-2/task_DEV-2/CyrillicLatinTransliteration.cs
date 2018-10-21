@@ -15,12 +15,12 @@ namespace task_DEV2
         {
             try
             {
-                if (args.Length == 0)
+                if (args.Length != 1)
                 {
                     throw new Exception("Wrong number of arguments");
                 }
 
-                string inputString = args.ArrayToString(); // Form string from arguments array
+                string inputString = args[0].ToLower();
                 string transliteratedString = inputString.Transliterate();
 
                 Console.WriteLine(transliteratedString);
