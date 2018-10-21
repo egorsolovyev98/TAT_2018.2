@@ -16,6 +16,11 @@ namespace task_DEV2
         /// <param name="inputString">Input string.</param>
         public static string Transliterate(this string inputString)
         {
+            if (inputString == String.Empty)
+            {
+                return inputString;
+            }
+
             Dictionary<string, string> transliterationDictionary = new Dictionary<string, string>
             {
                 ["щ"] = "sch",
