@@ -22,9 +22,16 @@ namespace task_DEV3
 
                 int inputValue = Convert.ToInt32(args[0]);
                 int newRadix = Convert.ToInt32(args[1]);
+
+                if (newRadix < 2 || newRadix > 20)
+                {
+                    throw new Exception("wrong radix.");
+                }
+
                 string inputValueInNewRadix = inputValue.ToNewRadix(newRadix);
 
-                Console.WriteLine(inputValueInNewRadix);
+                Console.WriteLine($"Input value = {inputValue} ,radix = 10.");
+                Console.WriteLine($"Input value = {inputValueInNewRadix} ,radix = {newRadix}.");
             }
             catch(Exception e)
             {

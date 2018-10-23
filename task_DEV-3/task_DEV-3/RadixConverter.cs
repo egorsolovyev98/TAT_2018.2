@@ -8,9 +8,9 @@ namespace task_DEV3
     public static class RadixConverter
     {
         /// <summary>
-        /// Tos the new radix.
+        /// Convert integer to new radix.
         /// </summary>
-        /// <returns>The new radix.</returns>
+        /// <returns>String with value in the new radix .</returns>
         /// <param name="value">Value.</param>
         /// <param name="radix">New radix.</param>
         public static string ToNewRadix(this int value, int radix)
