@@ -15,12 +15,12 @@ namespace task_DEV4
         {
             try
             {
-                if (args.Length != 1)
+                /*if (args.Length != 1)
                 {
                     throw new Exception("wrong numer of arguments.");
-                }
+                }*/
 
-                string path = args[0];
+                string path = "/Users/egorsolovev/Projects/task_DEV-4/file.xml";
                 XmlParser parser = new XmlParser(path);
             }
             catch(Exception e)
