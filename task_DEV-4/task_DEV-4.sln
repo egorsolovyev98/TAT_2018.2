@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task_DEV-4", "task_DEV-4\task_DEV-4.csproj", "{782B20F2-7B4A-4325-B7AA-F4F0BAD3ED80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{782B20F2-7B4A-4325-B7AA-F4F0BAD3ED80}.Debug|x86.ActiveCfg = Debug|x86
+		{782B20F2-7B4A-4325-B7AA-F4F0BAD3ED80}.Debug|x86.Build.0 = Debug|x86
+		{782B20F2-7B4A-4325-B7AA-F4F0BAD3ED80}.Release|x86.ActiveCfg = Release|x86
+		{782B20F2-7B4A-4325-B7AA-F4F0BAD3ED80}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
