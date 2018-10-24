@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -22,19 +23,8 @@ namespace task_DEV4
         {
             using (StreamReader reader = new StreamReader(filePath, System.Text.Encoding.UTF8))
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (line.Contains("?xml"))
-                    {
-                        continue;
-                    }
-
-                    if(!line.Contains("</"))
-                    {
-                        StringBuilder str = new StringBuilder(line.Remove(line.IndexOf("<"), line.IndexOf(">")));
-                    }
-                }
+                string[] separatorsForFile = new string[] { "\r\n", " ", "<", ">" };
+                string[] fileData = reader.ReadToEnd().Split(separatorsForFile, StringSplitOptions.RemoveEmptyEntries);
             }
         }
     }
