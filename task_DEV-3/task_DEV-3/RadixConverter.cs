@@ -38,9 +38,9 @@ namespace task_DEV3
                 'u' , 'v' , 'w' , 'x' , 'y' , 'z'
             };
 
-            char[] buf = new char[33];
+            char[] buf = new char[32];
             bool negative = (value < 0);
-            int charPos = 32; // The maximum possible number of divisions with the remainder
+            int charPos = 31; // The maximum possible number of divisions with the remainder
 
             if (!negative)
             {
@@ -60,7 +60,7 @@ namespace task_DEV3
                 buf[--charPos] = '-';
             }
 
-            return new String(buf, charPos, (33 - charPos));
+            return new String(buf, charPos, (32 - charPos));
         }
     }
 }
