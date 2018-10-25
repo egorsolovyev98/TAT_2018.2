@@ -38,22 +38,22 @@ namespace task_DEV3
                 'u' , 'v' , 'w' , 'x' , 'y' , 'z'
             };
 
-            char[] buf = new char[32];
+            int charPos = 31; // 31 - The maximum possible number of divisions with the remainder for type int
+            char[] buf = new char[32]; // 31 + 1 for sign
             bool negative = (value < 0);
-            int charPos = 31; // The maximum possible number of divisions with the remainder
 
-            if (!negative)
+            if (negative)
             {
                 value = -value;
             }
 
-            while (value <= -radix)
+            while (radix <= value)
             {
-                buf[charPos--] = digits[-(value % radix)];
+                buf[charPos--] = digits[value % radix];
                 value = value / radix;
             }
 
-            buf[charPos] = digits[-value];
+            buf[charPos] = digits[value];
 
             if (negative)
             {

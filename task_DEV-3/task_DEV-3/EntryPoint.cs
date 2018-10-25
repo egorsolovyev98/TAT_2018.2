@@ -23,7 +23,10 @@ namespace task_DEV3
                 int inputValue = Convert.ToInt32(args[0]);
                 int newRadix = Convert.ToInt32(args[1]);
 
-                if (newRadix < 2 || newRadix > 20)
+                const int MinRadixByCondition = 2;
+                const int MaxRadixByCondition = 20;
+
+                if (newRadix < MinRadixByCondition || newRadix > MaxRadixByCondition)
                 {
                     throw new Exception("wrong radix.");
                 }
