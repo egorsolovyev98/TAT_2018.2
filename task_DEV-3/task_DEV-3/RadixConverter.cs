@@ -40,7 +40,7 @@ namespace task_DEV3
 
             char[] buf = new char[33];
             bool negative = (value < 0);
-            int charPos = 32;
+            int charPos = 32; // The maximum possible number of divisions with the remainder
 
             if (!negative)
             {
