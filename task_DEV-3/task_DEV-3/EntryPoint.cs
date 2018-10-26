@@ -15,26 +15,11 @@ namespace task_DEV3
         {
             try
             {
-                if (args.Length != 2)
-                {
-                    throw new Exception("wrong number of arguments.");
-                }
+                InputChecker input = new InputChecker(args);
+                string inputValueInNewRadix = input.inputValue.ToNewRadix(input.newRadix);
 
-                int inputValue = Convert.ToInt32(args[0]);
-                int newRadix = Convert.ToInt32(args[1]);
-
-                const int MinRadixByCondition = 2;
-                const int MaxRadixByCondition = 20;
-
-                if (newRadix < MinRadixByCondition || newRadix > MaxRadixByCondition)
-                {
-                    throw new Exception("wrong radix.");
-                }
-
-                string inputValueInNewRadix = inputValue.ToNewRadix(newRadix);
-
-                Console.WriteLine($"Input value = {inputValue} ,radix = 10.");
-                Console.WriteLine($"Input value = {inputValueInNewRadix} ,radix = {newRadix}.");
+                Console.WriteLine($"Input value = {input.inputValue} ,radix = 10.");
+                Console.WriteLine($"Input value = {inputValueInNewRadix} ,radix = {input.newRadix}.");
             }
             catch(Exception e)
             {
