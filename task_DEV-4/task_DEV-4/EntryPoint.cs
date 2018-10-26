@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace task_DEV4
 {
@@ -22,6 +23,11 @@ namespace task_DEV4
 
                 string path = "/Users/egorsolovev/Projects/task_DEV-4/file.xml";
                 XmlParser parser = new XmlParser(path);
+
+                foreach(StringBuilder i in parser.xmlElements)
+                {
+                    Console.WriteLine(i);
+                }
             }
             catch(Exception e)
             {

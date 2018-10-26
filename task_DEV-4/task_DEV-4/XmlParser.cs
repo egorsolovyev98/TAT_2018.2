@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using System;
 
@@ -11,11 +10,13 @@ namespace task_DEV4
     public class XmlParser
     {
         private string filePath;
-        private Queue<StringBuilder> xmlElements = new Queue<StringBuilder>();
+        public List<StringBuilder> xmlElements { get; private set; }
+        private List<string> tagsStack = new List<string>();
 
         public XmlParser(string filePath)
         {
             this.filePath = filePath;
+            this.xmlElements = new List<StringBuilder>();
             fileReader();
         }
 
@@ -23,56 +24,98 @@ namespace task_DEV4
         {
             string[] fileData = System.IO.File.ReadAllLines(filePath);
             StringBuilder root = new StringBuilder();
-            //string lastTagPatter = "\\s*<\\w+>\\w+<\\\\w+>\\s*";
+            //string lastTagPatter = @"\s*[<]\w+[>]\w+[</]\w+[>]\s*";
+            //string pattern = @"\s*</\w+>\s*";
 
             for (int i = 1; i < fileData.Length; i++)
             {
-                if (!fileData[i].Contains("</") && !fileData[i].Contains("="))
+                if (IsOpeningTag(fileData[i]))
                 {
-                    root.Append(InfoFromSingleTag(fileData[i])).Append(" -> ");
+                    String tag = InfoFromSingleTag(fileData[i], "<", ">");
+                    tagsStack.Add(tag);
+                    root.Append(tag).Append(" -> ");
                 }
-                else if (!fileData[i].Contains("</"))
+                else if (IsAttribute(fileData[i]))
                 {
-                    root.Append(InfoFromAttribute(fileData[i])).Append(" -> ");
+                    Attribute attribute = InfoFromAttribute(fileData[i]);
+                    tagsStack.Add(attribute.tag);
+                    root.Append(attribute.ToString()).Append(" -> ");
                 }
-                else if (fileData[i].IndexOf("<") != fileData[i].LastIndexOf("<"))
+                else if (IsInnerTag(fileData[i]))
                 {
-                    root.Append(InfoFromLastTag(fileData[i]));
+                    Attribute attribute = InfoFromLastTag(fileData[i]);
+                    xmlElements.Add(new StringBuilder(root + attribute.tag + " -> " + attribute.value));
+  
+                }
+                else if (IsClosingTag(fileData[i]))
+                {
+                    int numberOfElements = tagsStack.Count;
+                    tagsStack.RemoveAt(numberOfElements - 1);
+                    root = GenerateRoot();
                 }
             }
         }
 
-        private string InfoFromLastTag(string str)
+        private StringBuilder GenerateRoot()
         {
-            StringBuilder formingStr = new StringBuilder();
-            formingStr.Append(InfoFromSingleTag(str)).Append(" -> ");
-            int quotesIndex = str.IndexOf(">") + 1;
-            formingStr.Append(str.Substring(quotesIndex, str.LastIndexOf("<") - quotesIndex));
+            StringBuilder root = new StringBuilder();
 
-            return formingStr.ToString();
+            foreach (string i in tagsStack)
+            {
+                root.Append(i).Append(" -> ");
+            }
+
+            return root;
         }
 
-        private string InfoFromAttribute(string str)
+        private Attribute InfoFromLastTag(string str)
+        {
+            Attribute attribute = new Attribute();
+            attribute.tag = InfoFromSingleTag(str, "<", ">");
+            int quotesIndex = str.IndexOf(">") + 1;
+            attribute.value = str.Substring(quotesIndex, str.LastIndexOf("<") - quotesIndex);
+
+            return attribute;
+        }
+
+        private Attribute InfoFromAttribute(string str)
         {
             StringBuilder formingStr = new StringBuilder();
-            string[] tmp = InfoFromSingleTag(str).Split(' ');
-            formingStr.Append(tmp[0]).Append(" { ");
+            string[] tmp = InfoFromSingleTag(str, "<", ">").Split(' ');
 
             for (int i = 1; i < tmp.Length; i++)
             {
-                formingStr.Append(tmp[i]).Append("; ");
+                formingStr.Append(tmp[i]).Append(";");
             }
 
-            formingStr.Append("}");
-
-            return formingStr.ToString();
+            return new Attribute (tmp[0], formingStr.ToString());
         }
 
-        private string InfoFromSingleTag(string str)
+        private string InfoFromSingleTag(string str, string fromSimble, string toSimble)
         {
-            int quotesIndex = str.IndexOf("<") + 1;
+            int quotesIndex = str.IndexOf(fromSimble) + 1;
 
-            return str.Substring(quotesIndex, str.IndexOf(">") - quotesIndex);
+            return str.Substring(quotesIndex, str.IndexOf(toSimble) - quotesIndex);
+        }
+
+        bool IsClosingTag(string str)
+        {
+            return str.Contains("</");
+        }
+
+        private bool IsInnerTag(string str)
+        {
+            return str.IndexOf("<") != str.LastIndexOf("<");
+        }
+
+        private bool IsAttribute(string str)
+        {
+            return !str.Contains("</");
+        }
+
+        private bool IsOpeningTag(string str)
+        {
+            return !str.Contains("</") && !str.Contains("=");
         }
     }
 }
