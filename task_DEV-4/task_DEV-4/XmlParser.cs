@@ -56,9 +56,9 @@ namespace task_DEV4
 
             for (int i = 0; i < fileData.Length; i++)
             {
-                if (fileData[i].Contains("?xml") || fileData[i].Contains("!DOCTYPE"))
+                if (fileData[i].Contains("?xml") || fileData[i].Contains("!DOCTYPE") || fileData[i].Contains("<!--"))
                 {
-                    continue;
+                    MissingExtraItems(ref i);
                 }
                 else if (IsOpeningTag(fileData[i]))
                 {
@@ -90,6 +90,22 @@ namespace task_DEV4
                     xmlElements.Add(str.ToString());
                     DeleteLastElement();
                     root = GenerateRoot();
+                    i++;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Missings the extra items.
+        /// </summary>
+        /// <param name="i">The index of array.</param>
+        private void MissingExtraItems(ref int i)
+        {
+            if (fileData[i].Contains("<!--"))
+            {
+                while (!fileData[i].Contains("-->"))
+                {
                     i++;
                 }
             }

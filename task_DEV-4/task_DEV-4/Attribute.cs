@@ -44,7 +44,7 @@
         /// <summary>
         /// To string method.
         /// </summary>
-        /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:task_DEV4.Attribute"/>.</returns>
+        /// <returns>Attribute in string.</returns>
         public override string ToString()
         {
             return tag + " " + value;
