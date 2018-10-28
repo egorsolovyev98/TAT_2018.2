@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace task_DEV4
 {
     /// <summary>
-    /// Entry point.
+    /// XML parsing program.
     /// </summary>
     class EntryPoint
     {
@@ -16,12 +16,12 @@ namespace task_DEV4
         {
             try
             {
-                /*if (args.Length != 1)
+                if (args.Length != 1)
                 {
                     throw new Exception("wrong numer of arguments.");
-                }*/
+                }
 
-                string path = "/Users/egorsolovev/Projects/task_DEV-4/file3.xml";
+                string path = args[0];
                 XmlParser parser = new XmlParser(path);
                 List<string> list = parser.xmlElements.SortXmlElements();
 
