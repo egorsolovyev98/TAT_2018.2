@@ -23,6 +23,12 @@ namespace lab_Car
                 list.AddHead(new Car("Pagani", "Huaira", "Yellow"));
 
                 MyList searchList = list.Search(new Car("BMW", "5", "Green"));
+
+                while (searchList.head != null)
+                {
+                    Console.WriteLine($"{searchList.head.car.Brand} - {searchList.head.car.Model} - {searchList.head.car.Color}");
+                    searchList.head = searchList.head.next;
+                }
             }
             catch(Exception e)
             {
