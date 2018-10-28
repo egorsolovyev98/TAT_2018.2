@@ -21,7 +21,7 @@ namespace task_DEV4
                     throw new Exception("wrong numer of arguments.");
                 }*/
 
-                string path = "/Users/egorsolovev/Projects/task_DEV-4/file.xml";
+                string path = "/Users/egorsolovev/Projects/task_DEV-4/file3.xml";
                 XmlParser parser = new XmlParser(path);
                 List<string> list = parser.xmlElements.SortXmlElements();
 

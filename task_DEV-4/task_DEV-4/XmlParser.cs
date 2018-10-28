@@ -69,7 +69,7 @@ namespace task_DEV4
                 else if (IsAttribute(fileData[i]))
                 {
                     Attribute attribute = InfoFromAttribute(fileData[i]);
-                    tagsList.Add(attribute.tag);
+                    tagsList.Add(attribute.ToString());
                     root.Append(attribute.ToString()).Append(" -> ");
                 }
                 else if (IsInnerTag(fileData[i]))
@@ -104,6 +104,7 @@ namespace task_DEV4
             int numberOfElements = tagsList.Count;
             tagsList.RemoveAt(numberOfElements - 1);
         }
+
 
         /// <summary>
         /// Reads the file.
