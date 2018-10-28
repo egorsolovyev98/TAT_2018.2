@@ -36,6 +36,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlParser.cs" />
     <Compile Include="Attribute.cs" />
+    <Compile Include="XmlArraySorter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

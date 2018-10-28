@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Text;
+using System.Collections.Generic;
 
 namespace task_DEV4
 {
@@ -23,8 +23,9 @@ namespace task_DEV4
 
                 string path = "/Users/egorsolovev/Projects/task_DEV-4/file.xml";
                 XmlParser parser = new XmlParser(path);
+                List<string> list = parser.xmlElements.SortXmlElements();
 
-                foreach(StringBuilder i in parser.xmlElements)
+                foreach(string i in list)
                 {
                     Console.WriteLine(i);
                 }
