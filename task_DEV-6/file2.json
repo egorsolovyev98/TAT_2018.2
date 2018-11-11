@@ -1,0 +1,24 @@
+{
+"books": {
+"book": {
+"isbn": "9781613820131",
+"author": "Herman Melville",
+"title": "Moby Dick",
+}
+"book": {
+"isbn": "9780060512804",
+"title": "Cryptonomicon",
+"author": "Neal Stephenson",
+}
+"book": {
+"isbn": "9780441012039",
+"author": "William Gibson",
+"title": "Neuromancer",
+}
+"book": {
+"isbn": "9781607962403",
+"author": "Isaac Newton",
+"title": "The Principia: Mathematical Principles of Natural Philosophy",
+}
+}
+}
