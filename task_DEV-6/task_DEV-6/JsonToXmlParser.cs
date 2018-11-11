@@ -20,19 +20,19 @@ namespace task_DEV6
         /// <returns>Parsed xml file in list of strings.</returns>
         public override List<string> Parse()
         {
-            for (int i = 0; i < fileData.Length; i++)
+            for (int i = 0; i < FileData.Length; i++)
             {
-                if (IsOpeningTag(fileData[i])) // "..." : {
+                if (IsOpeningTag(FileData[i])) // "..." : {
                 {
-                    string tag = InfoFromQuotes(fileData[i]);
+                    string tag = InfoFromQuotes(FileData[i]);
                     TagsStack.Push(tag);
                     FileInList.Add(MakeOpeningTag(tag));
                 }
-                else if(IsInnerTag(fileData[i])) // "..." : "..."
+                else if(IsInnerTag(FileData[i])) // "..." : "..."
                 {
-                    FileInList.Add(InfoFromInnerTag(fileData[i]));
+                    FileInList.Add(InfoFromInnerTag(FileData[i]));
                 }
-                else if(IsClosingTag(fileData[i])) // }
+                else if(IsClosingTag(FileData[i])) // }
                 {
                     if (TagsStack.Count != 0)
                     {
@@ -66,12 +66,12 @@ namespace task_DEV6
         private string InfoFromInnerTag(string str)
         {
             Attribute attribute = new Attribute();
-            attribute.tag = InfoFromQuotes(str);
+            attribute.Tag = InfoFromQuotes(str);
             int lastQuotesIndex = str.LastIndexOf("\"") - 1;
             int preLastQuotesIndex = str.LastIndexOf("\"", lastQuotesIndex);
-            attribute.value =  str.Substring(preLastQuotesIndex + 1, lastQuotesIndex - preLastQuotesIndex);
+            attribute.Value =  str.Substring(preLastQuotesIndex + 1, lastQuotesIndex - preLastQuotesIndex);
 
-            return $"{MakeOpeningTag(attribute.tag)}{attribute.value}{MakeClosingTag(attribute.tag)}";
+            return $"{MakeOpeningTag(attribute.Tag)}{attribute.Value}{MakeClosingTag(attribute.Tag)}";
         }
 
 

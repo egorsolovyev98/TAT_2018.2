@@ -9,14 +9,14 @@
         /// Gets or sets the tag.
         /// </summary>
         /// <value>The tag.</value>
-        public string tag { get; set; }
+        public string Tag { get; set; }
 
 
         /// <summary>
         /// Gets or sets the value.
         /// </summary>
         /// <value>The value.</value>
-        public string value { get; set; }
+        public string Value { get; set; }
 
 
         /// <summary>
@@ -24,8 +24,8 @@
         /// </summary>
         public Attribute()
         {
-            this.tag = string.Empty;
-            this.value = string.Empty;
+            this.Tag = string.Empty;
+            this.Value = string.Empty;
         }
 
 
@@ -36,8 +36,8 @@
         /// <param name="value">Value.</param>
         public Attribute(string tag, string value)
         {
-            this.tag = tag;
-            this.value = value;
+            this.Tag = tag;
+            this.Value = value;
         }
 
 
@@ -47,7 +47,7 @@
         /// <returns>Attribute in string.</returns>
         public override string ToString()
         {
-            return tag + " " + value;
+            return Tag + " " + Value;
         }
     }
 }

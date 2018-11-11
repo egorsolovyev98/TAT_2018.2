@@ -20,13 +20,9 @@ namespace task_DEV6
                 {
                     throw new Exception("Wrong number of arguments.");
                 }
-                //string xmlFilePath = "/Users/egorsolovev/Projects/task_DEV-6/file.xml";
-                //string jsonFilePath = "/Users/egorsolovev/Projects/task_DEV-6/file2.json";
 
                 foreach(string filePath in args)
                 {
-                    string str = Path.GetExtension(filePath);
-
                     if (Path.GetExtension(filePath).Equals(".xml"))
                     {
                         XmlToJsonParser xmlToJsonParser = new XmlToJsonParser(filePath);

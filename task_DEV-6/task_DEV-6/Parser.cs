@@ -32,7 +32,7 @@ namespace task_DEV6
         /// Gets the file data.
         /// </summary>
         /// <value>The file data.</value>
-        protected string[] fileData { get; private set; }
+        protected string[] FileData { get; private set; }
 
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace task_DEV6
                 throw new Exception($"File: {filePath} doesn't exists.");
             }
 
-            fileData = System.IO.File.ReadAllLines(filePath);
+            FileData = System.IO.File.ReadAllLines(filePath);
         }
 
 

@@ -23,36 +23,36 @@ namespace task_DEV6
         {
             FileInList.Add("{");
 
-            for (int i = 0; i < fileData.Length; i++)
+            for (int i = 0; i < FileData.Length; i++)
             {
-                if (fileData[i].Contains("?xml") || fileData[i].Contains("!DOCTYPE") || fileData[i].Contains("<!--"))
+                if (FileData[i].Contains("?xml") || FileData[i].Contains("!DOCTYPE") || FileData[i].Contains("<!--"))
                 {
                     MissingExtraItems(ref i);
                 }
-                else if (IsOpeningTag(fileData[i])) // <...>
+                else if (IsOpeningTag(FileData[i])) // <...>
                 {
-                    string tag = InfoFromSingleTag(fileData[i], "<", ">");
+                    string tag = InfoFromSingleTag(FileData[i], "<", ">");
                     TagsStack.Push(tag);
                     FileInList.Add($"\"{tag}\": {{");
                 }
-                else if (IsAttribute(fileData[i])) // <... ...="...">
+                else if (IsAttribute(FileData[i])) // <... ...="...">
                 {
-                    Attribute attribute = InfoFromAttribute(fileData[i]);
-                    FileInList.Add($"\"{attribute.tag}\": {{");
-                    FileInList.Add($"\"{attribute.value},");
+                    Attribute attribute = InfoFromAttribute(FileData[i]);
+                    FileInList.Add($"\"{attribute.Tag}\": {{");
+                    FileInList.Add($"\"{attribute.Value},");
                 }
-                else if (IsInnerTag(fileData[i])) // <...>...</...>
+                else if (IsInnerTag(FileData[i])) // <...>...</...>
                 {
-                    Attribute attribute = InfoFromInnertTag(fileData[i]);
-                    FileInList.Add($"\"{attribute.tag}\": \"{attribute.value}\",");
+                    Attribute attribute = InfoFromInnertTag(FileData[i]);
+                    FileInList.Add($"\"{attribute.Tag}\": \"{attribute.Value}\",");
                 }
-                else if (IsClosingTag(fileData[i])) // </...>
+                else if (IsClosingTag(FileData[i])) // </...>
                 {
                     FileInList.Add("}");
                 }
-                else if (IsNoTagsInLine(fileData[i])) 
+                else if (IsNoTagsInLine(FileData[i])) 
                 {
-                    string infoFromNoTagLine = fileData[i].Trim();
+                    string infoFromNoTagLine = FileData[i].Trim();
                     FileInList[FileInList.Count - 1] = $"\"{TagsStack.Pop()}\": \"{infoFromNoTagLine}\",";
                     i++;
                 }
@@ -70,9 +70,9 @@ namespace task_DEV6
         /// <param name="i">The index of array.</param>
         private void MissingExtraItems(ref int i)
         {
-            if (fileData[i].Contains("<!--"))
+            if (FileData[i].Contains("<!--"))
             {
-                while (!fileData[i].Contains("-->"))
+                while (!FileData[i].Contains("-->"))
                 {
                     i++;
                 }
@@ -88,9 +88,9 @@ namespace task_DEV6
         private Attribute InfoFromInnertTag(string str)
         {
             Attribute attribute = new Attribute();
-            attribute.tag = InfoFromSingleTag(str, "<", ">");
+            attribute.Tag = InfoFromSingleTag(str, "<", ">");
             int quotesIndex = str.IndexOf(">") + 1;
-            attribute.value = str.Substring(quotesIndex, str.LastIndexOf("<") - quotesIndex);
+            attribute.Value = str.Substring(quotesIndex, str.LastIndexOf("<") - quotesIndex);
 
             return attribute;
         }
