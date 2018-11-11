@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace task_DEV6
@@ -23,22 +24,28 @@ namespace task_DEV6
 
                 foreach(string filePath in args)
                 {
+                    string newExtension = string.Empty;
+                    List<string> file = null;
+
                     if (Path.GetExtension(filePath).Equals(".xml"))
                     {
                         XmlToJsonParser xmlToJsonParser = new XmlToJsonParser(filePath);
                         xmlToJsonParser.ReadFile();
-
-                        FileWritter fileWritter = new FileWritter(filePath, xmlToJsonParser.Parse());
-                        fileWritter.ChangeFileExtension("json");
-                        fileWritter.WriteFile();
+                        file = xmlToJsonParser.Parse();
+                        newExtension = "json";
                     }
                     else if (Path.GetExtension(filePath).Equals(".json"))
                     {
                         JsonToXmlParser jsonToXmlParser = new JsonToXmlParser(filePath);
                         jsonToXmlParser.ReadFile();
+                        file = jsonToXmlParser.Parse();
+                        newExtension = "xml";
+                    }
 
-                        FileWritter fileWritter = new FileWritter(filePath, jsonToXmlParser.Parse());
-                        fileWritter.ChangeFileExtension("xml");
+                    if ((newExtension != string.Empty) && (file != null))
+                    {
+                        FileWritter fileWritter = new FileWritter(filePath, file);
+                        fileWritter.ChangeFileExtension(newExtension);
                         fileWritter.WriteFile();
                     }
                 }
