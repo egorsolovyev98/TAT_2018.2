@@ -36,7 +36,6 @@ namespace task_DEV6
                     {
                         parser = new XmlToJsonParser();
                         newExtensionOfFile = "json";
-
                     }
                     else if (isJSONFile)
                     {
