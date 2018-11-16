@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace task_DEV6
 {
@@ -12,7 +13,7 @@ namespace task_DEV6
         /// Gets or sets the file in list.
         /// </summary>
         /// <value>The file in list.</value>
-        protected List<string> FileInList { get; set; }
+        protected List<string> ParsedFile { get; set; }
 
 
         /// <summary>
@@ -23,46 +24,54 @@ namespace task_DEV6
 
 
         /// <summary>
-        /// The file path.
-        /// </summary>
-        private string filePath;
-
-
-        /// <summary>
         /// Gets the file data.
         /// </summary>
         /// <value>The file data.</value>
-        protected string[] FileData { get; private set; }
+        protected string[] InputFileData { get; private set; }
 
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="filePath">File path.</param>
-        public Parser(string filePath)
+        public Parser()
         {
-            if (filePath == String.Empty)
-            {
-                throw new Exception("File name is empty.");
-            }
-
-            this.filePath = filePath;
-            this.FileInList = new List<string>();
-            this.TagsStack = new Stack<string>();
+            ParsedFile = new List<string>();
+            TagsStack = new Stack<string>();
         }
 
 
         /// <summary>
         /// Reads the file.
         /// </summary>
-        public void ReadFile()
+        public void ReadFile(string filePath)
         {
-            if (!System.IO.File.Exists(filePath))
+            if (!File.Exists(filePath))
             {
                 throw new Exception($"File: {filePath} doesn't exists.");
             }
 
-            FileData = System.IO.File.ReadAllLines(filePath);
+            InputFileData = File.ReadAllLines(filePath);
+        }
+
+
+        /// <summary>
+        /// Writes the parsed file.
+        /// </summary>
+        /// <param name="filePath">File path.</param>
+        public void WriteParsedFile(string filePath)
+        {
+            if (filePath == string.Empty)
+            {
+                throw new Exception("File name is empty.");
+            }
+
+            using (StreamWriter streamWriter = new StreamWriter(filePath, false, System.Text.Encoding.Default))
+            {
+                foreach (string str in ParsedFile)
+                {
+                    streamWriter.WriteLine(str);
+                }
+            }
         }
 
 

@@ -8,40 +8,35 @@ namespace task_DEV6
     public class JsonToXmlParser : Parser
     {
         /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="filePath">File path.</param>
-        public JsonToXmlParser(string filePath) : base(filePath) { }
-
-
-        /// <summary>
         /// Parses the json file to xml.
         /// </summary>
         /// <returns>Parsed xml file in list of strings.</returns>
         public override List<string> Parse()
         {
-            for (int i = 0; i < FileData.Length; i++)
+            ParsedFile.Clear();
+
+            for (int i = 0; i < InputFileData.Length; i++)
             {
-                if (IsOpeningTag(FileData[i])) // "..." : {
+                if (IsOpeningTag(InputFileData[i])) // "..." : {
                 {
-                    string tag = InfoFromQuotes(FileData[i]);
+                    string tag = InfoFromQuotes(InputFileData[i]);
                     TagsStack.Push(tag);
-                    FileInList.Add(MakeOpeningTag(tag));
+                    ParsedFile.Add(MakeOpeningTag(tag));
                 }
-                else if(IsInnerTag(FileData[i])) // "..." : "..."
+                else if(IsInnerTag(InputFileData[i])) // "..." : "..."
                 {
-                    FileInList.Add(InfoFromInnerTag(FileData[i]));
+                    ParsedFile.Add(InfoFromInnerTag(InputFileData[i]));
                 }
-                else if(IsClosingTag(FileData[i])) // }
+                else if(IsClosingTag(InputFileData[i])) // }
                 {
                     if (TagsStack.Count != 0)
                     {
-                        FileInList.Add(MakeClosingTag(TagsStack.Pop()));
+                        ParsedFile.Add(MakeClosingTag(TagsStack.Pop()));
                     }
                 }
             }
 
-            return FileInList;
+            return ParsedFile;
         }
 
 

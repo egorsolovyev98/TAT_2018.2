@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace task_DEV6
@@ -21,33 +20,38 @@ namespace task_DEV6
                 {
                     throw new Exception("Wrong number of arguments.");
                 }
+               
+                Parser parser;
+                string writeFilePath;
+                string newExtensionOfFile;
+                bool isXMLFile = false;
+                bool isJSONFile = false;
 
-                foreach(string filePath in args)
+                foreach (string filePath in args)
                 {
-                    string newExtension = string.Empty;
-                    List<string> file = null;
+                    isXMLFile = Path.GetExtension(filePath).Equals(".xml");
+                    isJSONFile = Path.GetExtension(filePath).Equals(".json");
 
-                    if (Path.GetExtension(filePath).Equals(".xml"))
+                    if (isXMLFile)
                     {
-                        XmlToJsonParser xmlToJsonParser = new XmlToJsonParser(filePath);
-                        xmlToJsonParser.ReadFile();
-                        file = xmlToJsonParser.Parse();
-                        newExtension = "json";
+                        parser = new XmlToJsonParser();
+                        newExtensionOfFile = "json";
+
                     }
-                    else if (Path.GetExtension(filePath).Equals(".json"))
+                    else if (isJSONFile)
                     {
-                        JsonToXmlParser jsonToXmlParser = new JsonToXmlParser(filePath);
-                        jsonToXmlParser.ReadFile();
-                        file = jsonToXmlParser.Parse();
-                        newExtension = "xml";
+                        parser = new JsonToXmlParser();
+                        newExtensionOfFile = "xml";
+                    }
+                    else
+                    {
+                        continue;
                     }
 
-                    if ((newExtension != string.Empty) && (file != null))
-                    {
-                        FileWritter fileWritter = new FileWritter(filePath, file);
-                        fileWritter.ChangeFileExtension(newExtension);
-                        fileWritter.WriteFile();
-                    }
+                    writeFilePath = Path.ChangeExtension(filePath, newExtensionOfFile);
+                    parser.ReadFile(filePath);
+                    parser.Parse();
+                    parser.WriteParsedFile(writeFilePath);
                 }
             }
             catch (Exception e)

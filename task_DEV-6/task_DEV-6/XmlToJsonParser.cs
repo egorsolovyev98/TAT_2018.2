@@ -9,58 +9,52 @@ namespace task_DEV6
     public class XmlToJsonParser : Parser
     {
         /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="filePath">File path.</param>
-        public XmlToJsonParser(string filePath) : base(filePath) {}
-
-
-        /// <summary>
         /// Parses the xml file to json.
         /// </summary>
         /// <returns>Parsed json file in list of strings.</returns>
         public override List<string> Parse()
         {
-            FileInList.Add("{");
+            ParsedFile.Clear();
+            ParsedFile.Add("{");
 
-            for (int i = 0; i < FileData.Length; i++)
+            for (int i = 0; i < InputFileData.Length; i++)
             {
-                if (FileData[i].Contains("?xml") || FileData[i].Contains("!DOCTYPE") || FileData[i].Contains("<!--"))
+                if (InputFileData[i].Contains("?xml") || InputFileData[i].Contains("!DOCTYPE") || InputFileData[i].Contains("<!--"))
                 {
                     MissingExtraItems(ref i);
                 }
-                else if (IsOpeningTag(FileData[i])) // <...>
+                else if (IsOpeningTag(InputFileData[i])) // <...>
                 {
-                    string tag = InfoFromSingleTag(FileData[i], "<", ">");
+                    string tag = InfoFromSingleTag(InputFileData[i], "<", ">");
                     TagsStack.Push(tag);
-                    FileInList.Add($"\"{tag}\": {{");
+                    ParsedFile.Add($"\"{tag}\": {{");
                 }
-                else if (IsAttribute(FileData[i])) // <... ...="...">
+                else if (IsAttribute(InputFileData[i])) // <... ...="...">
                 {
-                    Attribute attribute = InfoFromAttribute(FileData[i]);
-                    FileInList.Add($"\"{attribute.Tag}\": {{");
-                    FileInList.Add($"\"{attribute.Value},");
+                    Attribute attribute = InfoFromAttribute(InputFileData[i]);
+                    ParsedFile.Add($"\"{attribute.Tag}\": {{");
+                    ParsedFile.Add($"\"{attribute.Value},");
                 }
-                else if (IsInnerTag(FileData[i])) // <...>...</...>
+                else if (IsInnerTag(InputFileData[i])) // <...>...</...>
                 {
-                    Attribute attribute = InfoFromInnertTag(FileData[i]);
-                    FileInList.Add($"\"{attribute.Tag}\": \"{attribute.Value}\",");
+                    Attribute attribute = InfoFromInnertTag(InputFileData[i]);
+                    ParsedFile.Add($"\"{attribute.Tag}\": \"{attribute.Value}\",");
                 }
-                else if (IsClosingTag(FileData[i])) // </...>
+                else if (IsClosingTag(InputFileData[i])) // </...>
                 {
-                    FileInList.Add("}");
+                    ParsedFile.Add("}");
                 }
-                else if (IsNoTagsInLine(FileData[i])) 
+                else if (IsNoTagsInLine(InputFileData[i])) 
                 {
-                    string infoFromNoTagLine = FileData[i].Trim();
-                    FileInList[FileInList.Count - 1] = $"\"{TagsStack.Pop()}\": \"{infoFromNoTagLine}\",";
+                    string infoFromNoTagLine = InputFileData[i].Trim();
+                    ParsedFile[ParsedFile.Count - 1] = $"\"{TagsStack.Pop()}\": \"{infoFromNoTagLine}\",";
                     i++;
                 }
             }
 
-            FileInList.Add("}");
+            ParsedFile.Add("}");
 
-            return FileInList;
+            return ParsedFile;
         }
 
 
@@ -70,9 +64,9 @@ namespace task_DEV6
         /// <param name="i">The index of array.</param>
         private void MissingExtraItems(ref int i)
         {
-            if (FileData[i].Contains("<!--"))
+            if (InputFileData[i].Contains("<!--"))
             {
-                while (!FileData[i].Contains("-->"))
+                while (!InputFileData[i].Contains("-->"))
                 {
                     i++;
                 }
@@ -104,16 +98,16 @@ namespace task_DEV6
         private Attribute InfoFromAttribute(string str)
         {
             StringBuilder formingStr = new StringBuilder();
-            string[] tmp = InfoFromSingleTag(str, "<", ">").Split(' ');
+            string[] attributeInfo = InfoFromSingleTag(str, "<", ">").Split(' ');
 
-            for (int i = 1; i < tmp.Length; i++)
+            for (int i = 1; i < attributeInfo.Length; i++)
             {
-                formingStr.Append(tmp[i]).Replace("=","\": ").Append("\n");
+                formingStr.Append(attributeInfo[i]).Replace("=","\": ").Append("\n");
             }
 
             formingStr.Remove(formingStr.Length - 1, 1);
 
-            return new Attribute (tmp[0], formingStr.ToString());
+            return new Attribute (attributeInfo[0], formingStr.ToString());
         }
 
 

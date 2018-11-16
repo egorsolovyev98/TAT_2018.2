@@ -37,7 +37,6 @@
     <Compile Include="Parser.cs" />
     <Compile Include="Attribute.cs" />
     <Compile Include="XmlToJsonParser.cs" />
-    <Compile Include="FileWritter.cs" />
     <Compile Include="JsonToXmlParser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

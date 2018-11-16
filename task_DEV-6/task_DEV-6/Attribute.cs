@@ -24,8 +24,8 @@
         /// </summary>
         public Attribute()
         {
-            this.Tag = string.Empty;
-            this.Value = string.Empty;
+            Tag = string.Empty;
+            Value = string.Empty;
         }
 
 
@@ -36,8 +36,8 @@
         /// <param name="value">Value.</param>
         public Attribute(string tag, string value)
         {
-            this.Tag = tag;
-            this.Value = value;
+            Tag = tag;
+            Value = value;
         }
 
 
