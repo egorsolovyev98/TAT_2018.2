@@ -1,24 +1,60 @@
-﻿using System;
-
-namespace lab_Triangle
+﻿namespace lab_Triangle
 {
+    /// <summary>
+    /// Triangle.
+    /// </summary>
     public abstract class Triangle
     {
+        /// <summary>
+        /// Gets or sets vertex of the triangle.
+        /// </summary>
+        /// <value>A.</value>
         public Point2D A { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets vertex of the triangle.
+        /// </summary>
+        /// <value>The b.</value>
         public Point2D B { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets vertex of the triangle.
+        /// </summary>
+        /// <value>The c.</value>
         public Point2D C { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the side of the triangle.
+        /// </summary>
+        /// <value>The ab.</value>
         public double AB { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the side of the triangle.
+        /// </summary>
+        /// <value>The bc.</value>
         public double BC { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the side of the triangle.
+        /// </summary>
+        /// <value>The ac.</value>
         public double AC { get; set; }
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:lab_Triangle.Triangle"/> class.
+        /// </summary>
+        /// <param name="a">Vertex of the triangle.</param>
+        /// <param name="b">Vertex of the triangle.</param>
+        /// <param name="c">Vertex of the triangle.</param>
         protected Triangle(Point2D a, Point2D b, Point2D c)
         {
-            if (!IsTriangleExists())
-            {
-                throw new Exception("Impossible to build a triangle at given points.");
-            }
-
             A = a;
             B = b;
             C = c;
@@ -28,16 +64,11 @@ namespace lab_Triangle
             AC = A.GetDistance(C);
         }
 
-        protected bool IsTriangleExists()
-        {
-            bool first = Math.Abs(AB - BC - AC) <= double.Epsilon;
-            bool second = Math.Abs(BC - AC - AB) <= double.Epsilon;
-            bool third = Math.Abs(AC - AB - BC) <= double.Epsilon;
-            
-            return first && second && third;
-        }
 
-
+        /// <summary>
+        /// Gets the square.
+        /// </summary>
+        /// <returns>The square.</returns>
         public abstract double GetSquare();
     }
 }

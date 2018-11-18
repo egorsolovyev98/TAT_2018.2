@@ -2,8 +2,15 @@
 
 namespace lab_Triangle
 {
-    class MainClass
+    /// <summary>
+    /// Entry point.
+    /// </summary>
+    class EntryPoint
     {
+        /// <summary>
+        /// The entry point of the program, where the program control starts and ends.
+        /// </summary>
+        /// <param name="args">The command-line arguments.</param>
         public static void Main(string[] args)
         {
             Point2D a = new Point2D(0.0, 3.0);

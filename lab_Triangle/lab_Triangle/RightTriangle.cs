@@ -1,35 +1,34 @@
 ﻿using System;
+
 namespace lab_Triangle
 {
+    /// <summary>
+    /// Right triangle.
+    /// </summary>
     public class RightTriangle : Triangle
     {
-        private double Hypotenuse { get; set; }
-        private double Cathetus1 { get; set; }
-        private double Cathetus2 { get; set; }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="a">Vertex of the triangle.</param>
+        /// <param name="b">Vertex of the triangle.</param>
+        /// <param name="c">Vertex of the triangle.</param>
+        public RightTriangle(Point2D a, Point2D b, Point2D c) : base(a, b, c) { }
 
-        public RightTriangle(Point2D a, Point2D b, Point2D c) : base(a, b, c) 
+
+        /// <summary>
+        /// Gets the square.
+        /// </summary>
+        /// <returns>The square.</returns>
+        public override double GetSquare()
         {
             double[] array = { AB, BC, AC };
             Array.Sort(array);
 
-            Hypotenuse = array[2];
-            Cathetus1 = array[1];
-            Cathetus2 = array[0];
+            double cathetus1 = array[1];
+            double cathetus2 = array[0];
 
-            if (!IsRightTriangle())
-            {
-                throw new Exception("Not a right triangle.");
-            }
-        }
-
-        public override double GetSquare()
-        {
-            return Cathetus1 * Cathetus2 / 2;
-        }
-
-        private bool IsRightTriangle()
-        {
-            return Math.Pow(Hypotenuse, 2).Equals(Math.Pow(Cathetus1, 2) + Math.Pow(Cathetus2, 2));
+            return cathetus1 * cathetus2 / 2;
         }
     }
 }
