@@ -18,7 +18,6 @@ namespace task_DEV3.Tests
             Assert.AreEqual(expected, actual);
         }
 
-
         [Test]
         [ExpectedException(typeof(ArgumentException))]
         [TestCase(-221, 37)]
