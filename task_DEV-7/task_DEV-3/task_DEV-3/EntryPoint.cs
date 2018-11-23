@@ -5,12 +5,12 @@ namespace task_DEV3
     /// <summary>
     /// Entry point.
     /// </summary>
-    class EntryPoint
+    public class EntryPoint
     {
         /// <summary>
         /// The entry point of the program, where the program control starts and ends.
         /// </summary>
-        /// <param name="args">The command-line arguments.</param>
+        /// <param name="args">Integer value and integer radix.</param>
         public static void Main(string[] args)
         {
             try
@@ -28,7 +28,7 @@ namespace task_DEV3
 
                 if (newRadix < MinRadixByCondition || newRadix > MaxRadixByCondition)
                 {
-                    throw new Exception("Wrong radix.");
+                    throw new ArgumentException("Wrong radix.");
                 }
                 string inputValueInNewRadix = inputValue.ToNewRadix(newRadix);
 
