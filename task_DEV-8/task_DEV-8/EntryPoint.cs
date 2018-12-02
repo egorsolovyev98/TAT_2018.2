@@ -15,6 +15,11 @@ namespace task_DEV8
         {
             try
             {
+                if (args.Length != 2)
+                {
+                    throw new ArgumentException("Wrong number of arguments.");
+                }
+
                 var vehicleXMLParser = new VehicleXMLParser();
                 var carCatalog = new VehicleCatalog(vehicleXMLParser.GetVehicles(args[0]));
                 var truckCatalog = new VehicleCatalog(vehicleXMLParser.GetVehicles(args[1]));
