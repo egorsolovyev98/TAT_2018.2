@@ -1,9 +1,11 @@
-﻿namespace task_DEV5
+﻿using System;
+
+namespace task_DEV5
 {
     /// <summary>
-    /// Calls the adding car method.
+    /// Calls the counting types method.
     /// </summary>
-    public class Add : ICommand
+    public class CountTypesCommand : ICommand
     {
         /// <summary>
         /// The car catalog.
@@ -12,20 +14,12 @@
 
 
         /// <summary>
-        /// The car.
-        /// </summary>
-        private Car car;
-
-
-        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="carCatalog">Car catalog.</param>
-        /// <param name="car">Car.</param>
-        public Add(CarCatalog carCatalog, Car car)
+        public CountTypesCommand(CarCatalog carCatalog)
         {
             this.carCatalog = carCatalog;
-            this.car = car;
         }
 
 
@@ -34,7 +28,8 @@
         /// </summary>
         public void Execute()
         {
-            carCatalog.AddToCatalog(car);
+            int amountOfBrands = carCatalog.AmountOfBrands();
+            Console.WriteLine(amountOfBrands);
         }
     }
 }

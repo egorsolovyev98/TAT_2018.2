@@ -5,7 +5,7 @@ namespace task_DEV5
     /// <summary>
     /// Calls the counting average price method.
     /// </summary>
-    public class AveragePrice : ICommand
+    public class AveragePriceCommand : ICommand
     {
         /// <summary>
         /// The car catalog.
@@ -17,7 +17,7 @@ namespace task_DEV5
         /// Constructor.
         /// </summary>
         /// <param name="carCatalog">Car catalog.</param>
-        public AveragePrice(CarCatalog carCatalog)
+        public AveragePriceCommand(CarCatalog carCatalog)
         {
             this.carCatalog = carCatalog;
         }

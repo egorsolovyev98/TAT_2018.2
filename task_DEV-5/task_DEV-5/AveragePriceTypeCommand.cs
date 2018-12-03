@@ -2,10 +2,7 @@
 
 namespace task_DEV5
 {
-    /// <summary>
-    /// Calls the counting all cars method.
-    /// </summary>
-    public class CountAll : ICommand
+    public class AveragePriceTypeCommand : ICommand
     {
         /// <summary>
         /// The car catalog.
@@ -14,12 +11,20 @@ namespace task_DEV5
 
 
         /// <summary>
+        /// The brand.
+        /// </summary>
+        private string brand;
+
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="carCatalog">Car catalog.</param>
-        public CountAll(CarCatalog carCatalog)
+        /// <param name="brand">Brand.</param>
+        public AveragePriceTypeCommand(CarCatalog carCatalog, string brand)
         {
             this.carCatalog = carCatalog;
+            this.brand = brand;
         }
 
 
@@ -28,8 +33,8 @@ namespace task_DEV5
         /// </summary>
         public void Execute()
         {
-            int amountOfCars = carCatalog.AmountOfAllCars();
-            Console.WriteLine(amountOfCars);
+            double averageBrandPrice = carCatalog.AverageBrandPrice(brand);
+            Console.WriteLine(averageBrandPrice);
         }
     }
 }

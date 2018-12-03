@@ -60,24 +60,24 @@ namespace task_DEV5
                         amount = Convert.ToInt32(inputString[3]);
                         price = Convert.ToDouble(inputString[4]);
                         Car car = new Car(brand, model, amount, price);
-                        command = new Add(carCatalog,car);
+                        command = new AddCommand(carCatalog,car);
                         break;
 
                     case AvailableCommands.CountTypes:
-                        command = new CountTypes(carCatalog);
+                        command = new CountTypesCommand(carCatalog);
                         break;
 
                     case AvailableCommands.CountAll:
-                        command = new CountAll(carCatalog);
+                        command = new CountAllCommand(carCatalog);
                         break;
 
                     case AvailableCommands.AveragePrice:
-                        command = new AveragePrice(carCatalog);
+                        command = new AveragePriceCommand(carCatalog);
                         break;
 
                     case AvailableCommands.AveragePriceType:
                         brand = inputString[2];
-                        command = new AveragePriceType(carCatalog, brand);
+                        command = new AveragePriceTypeCommand(carCatalog, brand);
                         break;
 
                     case AvailableCommands.Exit:

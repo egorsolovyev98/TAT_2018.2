@@ -37,13 +37,13 @@
     <Compile Include="Car.cs" />
     <Compile Include="CarCatalog.cs" />
     <Compile Include="ICommand.cs" />
-    <Compile Include="CountTypes.cs" />
-    <Compile Include="CountAll.cs" />
-    <Compile Include="AveragePrice.cs" />
-    <Compile Include="AveragePriceType.cs" />
+    <Compile Include="CountTypesCommand.cs" />
+    <Compile Include="CountAllCommand.cs" />
+    <Compile Include="AveragePriceCommand.cs" />
+    <Compile Include="AveragePriceTypeCommand.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="AvailableCommands.cs" />
-    <Compile Include="Add.cs" />
+    <Compile Include="AddCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
