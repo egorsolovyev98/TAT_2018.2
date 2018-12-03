@@ -23,12 +23,6 @@ namespace task_DEV4
 
 
         /// <summary>
-        /// The file path.
-        /// </summary>
-        private string filePath;
-
-
-        /// <summary>
         /// File in string array.
         /// </summary>
         private string[] fileData;
@@ -37,20 +31,16 @@ namespace task_DEV4
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="filePath">File path.</param>
-        public XmlParser(string filePath)
+        public XmlParser()
         {
-            this.filePath = filePath;
-            this.xmlElements = new List<string>();
-            ReadFile();
-            Parse();
+           xmlElements = new List<string>();
         }
 
 
         /// <summary>
         /// Parses the xml file to string list.
         /// </summary>
-        private void Parse()
+        public void Parse()
         {
             StringBuilder root = new StringBuilder();
 
@@ -125,7 +115,8 @@ namespace task_DEV4
         /// <summary>
         /// Reads the file.
         /// </summary>
-        private void ReadFile()
+        /// <param name="filePath">File path.</param>
+        public void ReadFile(string filePath)
         {
             fileData = System.IO.File.ReadAllLines(filePath);
         }

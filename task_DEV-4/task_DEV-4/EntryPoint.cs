@@ -21,8 +21,10 @@ namespace task_DEV4
                     throw new Exception("wrong numer of arguments.");
                 }
 
-                string path = args[0];
-                XmlParser parser = new XmlParser(path);
+                XmlParser parser = new XmlParser();
+                parser.ReadFile(args[0]);
+                parser.Parse();
+
                 List<string> list = parser.xmlElements.SortXmlElements();
 
                 foreach(string i in list)
