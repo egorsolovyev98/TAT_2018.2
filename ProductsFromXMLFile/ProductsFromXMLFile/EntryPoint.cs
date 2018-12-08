@@ -15,7 +15,12 @@ namespace ProductsFromXMLFile
         {
             try
             {
-                string filePath = "/Users/egorsolovev/Projects/ProductsFromXMLFile/ProductsFromXMLFile/file.xml";
+                if (args.Length != 1)
+                {
+                    throw new ArgumentException("Wrong number of arguments.");
+                }
+
+                string filePath = args[0];
                 double maxPrice = Double.Parse(Console.ReadLine());
                 DateTime date = new DateTime(2019, 6, 30);
                 ProductXMLConverter productXMLConverter = new ProductXMLConverter();
