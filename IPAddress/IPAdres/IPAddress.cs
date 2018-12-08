@@ -1,10 +1,18 @@
 ﻿using System;
 using System.Text;
 
-namespace IPAdres
+namespace IPAddress
 {
+    /// <summary>
+    /// IPA ddress.
+    /// </summary>
     public class IPAddress
     {
+        /// <summary>
+        /// Gets the IPA ddress.
+        /// </summary>
+        /// <returns>The IP address.</returns>
+        /// <param name="str">String.</param>
         public string GetIPAddress(string str)
         {
             StringBuilder ipAddress = new StringBuilder();
@@ -53,6 +61,12 @@ namespace IPAdres
             return IsValid(resultIpAddress) ? resultIpAddress : string.Empty;
         }
 
+
+        /// <summary>
+        /// Ises the valid.
+        /// </summary>
+        /// <returns><c>true</c>, if valid was ised, <c>false</c> otherwise.</returns>
+        /// <param name="ipAddress">Ip address.</param>
         public bool IsValid (string ipAddress)
         {
             string[] numbers = ipAddress.Split('.');

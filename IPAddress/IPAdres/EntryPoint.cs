@@ -1,9 +1,13 @@
 ﻿using System;
 
-namespace IPAdres
+namespace IPAddress
 {
-    class MainClass
+    public class EntryPoint
     {
+        /// <summary>
+        /// The entry point of the program, where the program control starts and ends.
+        /// </summary>
+        /// <param name="args">The command-line arguments.</param>
         public static void Main(string[] args)
         {
             try
