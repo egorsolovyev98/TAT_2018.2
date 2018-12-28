@@ -4,9 +4,9 @@ using OpenQA.Selenium.Chrome;
 namespace Pages
 {
     /// <summary>
-    /// Main page form.
+    /// Accept rules form.
     /// </summary>
-    public class MainPageForm
+    public class AcceptRulesForm
     {
         /// <summary>
         /// The driver.
@@ -15,27 +15,27 @@ namespace Pages
 
 
         /// <summary>
-        /// The login.
+        /// The submit button.
         /// </summary>
-        private readonly By _login = By.XPath("//a[1]/b");
+        private By _submitButton = By.XPath("//input[@type='checkbox']");
 
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:Pages.MainPageForm"/> class.
+        /// Initializes a new instance of the <see cref="T:Pages.AcceptRulesForm"/> class.
         /// </summary>
         /// <param name="driver">Driver.</param>
-        public MainPageForm(ChromeDriver driver)
+        public AcceptRulesForm(ChromeDriver driver)
         {
             _driver = driver;
         }
 
 
         /// <summary>
-        /// Goes to log in.
+        /// Clicks the on submit button.
         /// </summary>
-        public void GoToLogIn()
+        public void ClickOnSubmitButton()
         {
-            _driver.FindElement(_login).Click();
+            _driver.FindElement(_submitButton).Click();
         }
     }
 }

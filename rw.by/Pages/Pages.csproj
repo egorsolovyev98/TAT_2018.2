@@ -41,7 +41,7 @@
     <Compile Include="MainPageForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LogInForm.cs" />
-    <Compile Include="AsseptRulesForm.cs" />
+    <Compile Include="AcceptRulesForm.cs" />
     <Compile Include="RoutesForm.cs" />
   </ItemGroup>
   <ItemGroup>

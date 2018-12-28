@@ -4,15 +4,32 @@ using Pages;
 
 namespace BusinessLogic
 {
+    /// <summary>
+    /// Log in.
+    /// </summary>
     public class LogIn
     {
+        /// <summary>
+        /// The driver.
+        /// </summary>
         private ChromeDriver _driver;
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:BusinessLogic.LogIn"/> class.
+        /// </summary>
+        /// <param name="driver">Driver.</param>
         public LogIn (ChromeDriver driver)
         {
             _driver = driver;
         }
 
+
+        /// <summary>
+        /// Logs the in with parametors.
+        /// </summary>
+        /// <param name="login">Login.</param>
+        /// <param name="password">Password.</param>
         public void LogInWithParametors(string login, string password)
         {
             MainPageForm mainPageForm = new MainPageForm(_driver);
@@ -22,9 +39,13 @@ namespace BusinessLogic
             logInForm.LogIn(login, password);
         }
 
-        public void AsseptRules()
+
+        /// <summary>
+        /// Assepts the rules.
+        /// </summary>
+        public void AcceptRules()
         {
-            new AsseptRulesForm(_driver).ClickOnSubmitButton();
+            new AcceptRulesForm(_driver).ClickOnSubmitButton();
         }
 
 

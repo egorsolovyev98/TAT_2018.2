@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
 using BusinessLogic;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using Pages;
 using System;
 
 namespace task_DEV10

@@ -23,7 +23,7 @@ namespace task_DEV10
 
             LogIn login = new LogIn(_driver);
             login.LogInWithParametors(_login, _password);
-            login.AsseptRules();
+            login.AcceptRules();
         }
 
         [TearDown]
